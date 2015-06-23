@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <MBProgressHUD/MBProgressHUD.h>
 
 @interface UIView(YCCommon)
 

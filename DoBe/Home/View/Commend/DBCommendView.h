@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DBCommendView : UIView
+typedef void(^DidSelectRowBlock)(NSInteger row);
+
+@interface DBCommendView : UIView<UITableViewDataSource, UITableViewDelegate>
+
+@property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, copy) DidSelectRowBlock didSelectRowBlock;
 
 @end

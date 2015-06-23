@@ -49,22 +49,31 @@
     return self;
 }
 
--(void)setIndex:(NSInteger)selectedIndex
+- (void)setIndex:(NSInteger)selectedIndex
 {
     [self resetAllButtons];
     if (_isNeedSetTitle) {
         UIButton * titleBtn = (UIButton *)[self viewWithTag:BASE_BUTTONTAG + selectedIndex];
         titleBtn.selected = YES;
         [titleBtn setTitleColor:_selectedColor forState:UIControlStateSelected];
+        if (_selectedBgColor) {
+            [titleBtn setBackgroundColor:_selectedBgColor];
+        }else {
+            [titleBtn setBackgroundColor:[UIColor redColor]];
+        }
         
     } else {
         UIButton *btn = (UIButton *)[self viewWithTag:BASE_BUTTONTAG + selectedIndex];
         [btn setImage:self.selectedImageNSArray[selectedIndex] forState:UIControlStateSelected];
+        if (_selectedBgColor) {
+            [btn setBackgroundColor:_selectedBgColor];
+        }else {
+            [btn setBackgroundColor:[UIColor redColor]];
+        }
     }
-
 }
 
--(void)setSelectedIndex:(NSInteger)selectedIndex
+- (void)setSelectedIndex:(NSInteger)selectedIndex
 {
     [self setIndex:selectedIndex];
     if (self.btnPressedBlock) {
@@ -72,7 +81,7 @@
     }
 }
 
-#pragma mark -------------- private method ---
+#pragma mark - private method
 
 -(void)creatButtonsWithArray:(NSArray *)tmpArray
 {
@@ -91,7 +100,10 @@
             
             UIButton * tmpBtn = (UIButton *)[self viewWithTag:BASE_BUTTONTAG + i];
             [tmpBtn setTitle:tmpArray[i] forState:UIControlStateNormal];
-            tmpBtn.titleLabel.font = [UIFont systemFontOfSize:13];
+            if (!_customFont) {
+                _customFont = [UIFont systemFontOfSize:13.0f];
+            }
+            tmpBtn.titleLabel.font = _customFont;
             [tmpBtn setTitleColor:_unselectedColor forState:UIControlStateNormal];
             tmpBtn.selected = NO;
             UIImage * imag = nil;
@@ -116,8 +128,7 @@
                 [tmpBtn setBackgroundImage:imag forState:UIControlStateSelected];
             }
         }
-    }
-    else if([[tmpArray lastObject] isKindOfClass:[UIImage class]]) {
+    }else if([[tmpArray lastObject] isKindOfClass:[UIImage class]]) {
         //图片数组
         for (int i = 0 ; i < tmpArray.count; i++) {
             UIButton * tmpBtn = (UIButton *)[self viewWithTag:BASE_BUTTONTAG + i];
@@ -139,21 +150,22 @@
         [self creatButtonsWithArray:self.imagesArray];
     }
 }
-
-
 -(void)btnPressed:(UIButton *)btn
 {
     [self setSelectedIndex:btn.tag-BASE_BUTTONTAG];
 //    _btnPressedBlock(btn.tag-BASE_BUTTONTAG);
 }
 
-
-
--(void)layoutSubviews
+- (void)layoutSubviews
 {
-    for (int i = 0 ; i < self.titleArray.count; i++) {
+    NSInteger count = _titleArray.count;
+    for (int i = 0 ; i < count; i++) {
         UIButton *btn = (UIButton *)[self viewWithTag:BASE_BUTTONTAG + i];
-        btn.frame = CGRectMake(i * self.frame.size.width/2.0, 0, self.frame.size.width/2.0 , self.frame.size.height);
+        btn.frame = CGRectMake(i * self.frame.size.width/count, 0, self.frame.size.width/count , self.frame.size.height);
+        if (i > 0 && i < count - 1) {
+            btn.layer.borderWidth = 0.25f;
+            btn.layer.borderColor = kLightTextGray.CGColor;
+        }
     }
 }
 

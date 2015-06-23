@@ -19,6 +19,8 @@ typedef void(^ButtonPressedBlock)(NSInteger index);
 @property (nonatomic,assign) NSInteger selectedIndex;//选中的的index
 @property (nonatomic,strong) UIColor * selectedColor;
 @property (nonatomic,strong) UIColor * unselectedColor;
+@property (nonatomic,strong) UIColor * selectedBgColor;
+@property (nonatomic,strong) UIFont  * customFont;
 @property (nonatomic,assign) segmentButtonType btnShap;
 
 @property (nonatomic,copy)  ButtonPressedBlock btnPressedBlock;

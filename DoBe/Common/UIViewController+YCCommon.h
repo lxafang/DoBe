@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <MBProgressHUD/MBProgressHUD.h>
-#import <ReactiveCocoa/ReactiveCocoa.h>
 #import "NSObject+YCCommon.h"
+
+@class MBProgressHUD;
 
 #define kNetWorkErrorTip  @"网络不给力,请稍后重试"
 
@@ -107,19 +107,25 @@
 
 -(UIViewController *)getSpecificClassWithName:(NSString *)className;
 
-#pragma mark -- tableview 相关
+#pragma mark - UITableView
+
+- (void)setExtraCellLineHidden:(UITableView *)tableView;
+
 -(UITableViewCell *)getCellWithTableView:(UITableView *)tableView cellID:(NSString *)cellID nibName:(NSString *)nibName;
 
 
 -(void)registerTableView:(UITableView *)tableView withCellNibName:(NSString *)nibName cellIdentifier:(NSString *)cellIdentifier;
 
-
+#pragma mark - UIViewController
 /**
  *  获得当前正在显示的ViewController
  *
  *  @return 当前显示的ViewController类名
  */
 - (UIViewController *)topMostViewController;
+
+- (UIViewController *)instantiateViewControllerWithIdentifier:(NSString *)storyboardId
+                                           withStoryboardName:(NSString *)name;
 
 
 @end

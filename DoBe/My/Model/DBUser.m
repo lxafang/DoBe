@@ -8,6 +8,29 @@
 
 #import "DBUser.h"
 
+static DBUser *sharedInstance = nil;
+
 @implementation DBUser
+
++ (DBUser *)sharedInstance {
+    @synchronized(self) {
+        if (sharedInstance == nil) {
+            sharedInstance = [[DBUser alloc] init];
+        }
+    }
+    return sharedInstance;
+}
+
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        self.signature = @"这家伙很懒，什么都没留下";
+    }
+    return self;
+}
+
+- (void)clearData {
+    
+}
 
 @end

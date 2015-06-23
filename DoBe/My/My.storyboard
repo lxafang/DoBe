@@ -1,7 +1,192 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
     </dependencies>
-    <scenes/>
+    <scenes>
+        <!--My Controller-->
+        <scene sceneID="aKJ-wh-BxE">
+            <objects>
+                <viewController storyboardIdentifier="DBMyVC" id="3Xk-qb-1cm" customClass="DBMyController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="mXL-Jg-ckB"/>
+                        <viewControllerLayoutGuide type="bottom" id="MtU-s4-sZe"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="QNG-wM-SoW">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="HIX-Fa-H9Q">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="490"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="490" id="dtR-fj-u18"/>
+                                </constraints>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nZP-1f-0N6">
+                                <rect key="frame" x="7" y="24" width="30" height="30"/>
+                                <state key="normal" image="back">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="backTouchUpInsideClick:" destination="3Xk-qb-1cm" eventType="touchUpInside" id="tdz-9L-FF0"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="HIX-Fa-H9Q" secondAttribute="trailing" id="1Fe-R1-4Ve"/>
+                            <constraint firstItem="HIX-Fa-H9Q" firstAttribute="leading" secondItem="QNG-wM-SoW" secondAttribute="leading" id="UmE-hS-sjE"/>
+                            <constraint firstItem="HIX-Fa-H9Q" firstAttribute="top" secondItem="QNG-wM-SoW" secondAttribute="top" id="qqQ-aE-2YE"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="tableView" destination="HIX-Fa-H9Q" id="Uqa-42-sET"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SSG-fC-9tp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-575.5" y="438.5"/>
+        </scene>
+        <!--AccountVC-->
+        <scene sceneID="dwl-LP-QlL">
+            <objects>
+                <viewController storyboardIdentifier="DBAccountVC" id="KmZ-Bc-qdR" customClass="DBAccountVC" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="6X2-xn-U2Z"/>
+                        <viewControllerLayoutGuide type="bottom" id="03A-2j-do2"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="KcJ-bE-lGm">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="E7N-Um-GBE">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="584"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="92m-0F-kmr">
+                                <rect key="frame" x="20" y="603" width="335" height="44"/>
+                                <color key="backgroundColor" red="0.51372549020000002" green="0.76078431369999999" blue="0.18823529410000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="iaR-yf-zgN"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="退出登录">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" red="0.51372549020000002" green="0.76078431369999999" blue="0.18823529410000001" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="loginOutTouchUpInside:" destination="KmZ-Bc-qdR" eventType="touchUpInside" id="RJf-W5-iTP"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="E7N-Um-GBE" firstAttribute="top" secondItem="KcJ-bE-lGm" secondAttribute="top" id="0A8-ge-otK"/>
+                            <constraint firstItem="03A-2j-do2" firstAttribute="top" secondItem="92m-0F-kmr" secondAttribute="bottom" constant="20" id="OEP-U1-Ofp"/>
+                            <constraint firstAttribute="trailing" secondItem="E7N-Um-GBE" secondAttribute="trailing" id="YVl-fJ-J0E"/>
+                            <constraint firstItem="E7N-Um-GBE" firstAttribute="width" secondItem="KcJ-bE-lGm" secondAttribute="width" id="YyA-e8-30F"/>
+                            <constraint firstAttribute="trailing" secondItem="92m-0F-kmr" secondAttribute="trailing" constant="20" id="h97-iF-vYi"/>
+                            <constraint firstItem="92m-0F-kmr" firstAttribute="leading" secondItem="KcJ-bE-lGm" secondAttribute="leading" constant="20" id="jc3-Hr-OXV"/>
+                            <constraint firstItem="E7N-Um-GBE" firstAttribute="leading" secondItem="KcJ-bE-lGm" secondAttribute="leading" id="wDV-sH-Jnt"/>
+                        </constraints>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="375" height="667"/>
+                    <connections>
+                        <outlet property="loginOutBtn" destination="92m-0F-kmr" id="r0d-ek-cx0"/>
+                        <outlet property="tableView" destination="E7N-Um-GBE" id="clc-Ud-ck4"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Zcd-Wa-XbU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-177.5" y="445.5"/>
+        </scene>
+        <!--SettingVC-->
+        <scene sceneID="h6e-2R-UsW">
+            <objects>
+                <viewController storyboardIdentifier="DBSettingVC" id="bUk-WO-1w7" customClass="DBSettingVC" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="p7b-WE-Qay"/>
+                        <viewControllerLayoutGuide type="bottom" id="aGz-ny-SXn"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="UHp-ai-Wzs">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="zj9-MM-uQN">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="zj9-MM-uQN" secondAttribute="trailing" id="GY4-bk-ojQ"/>
+                            <constraint firstItem="zj9-MM-uQN" firstAttribute="leading" secondItem="UHp-ai-Wzs" secondAttribute="leading" id="O97-q4-nF0"/>
+                            <constraint firstItem="zj9-MM-uQN" firstAttribute="width" secondItem="UHp-ai-Wzs" secondAttribute="width" id="WHH-UM-rzY"/>
+                            <constraint firstItem="zj9-MM-uQN" firstAttribute="height" secondItem="UHp-ai-Wzs" secondAttribute="height" id="bHe-w0-CXN"/>
+                            <constraint firstItem="zj9-MM-uQN" firstAttribute="top" secondItem="UHp-ai-Wzs" secondAttribute="top" id="rB8-sM-e6B"/>
+                        </constraints>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="375" height="667"/>
+                    <connections>
+                        <outlet property="tableView" destination="zj9-MM-uQN" id="Jue-nb-3qK"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="903-Db-sQI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="218.5" y="454.5"/>
+        </scene>
+        <!--Download ManagerVC-->
+        <scene sceneID="ldI-JS-qLy">
+            <objects>
+                <viewController storyboardIdentifier="DBDownloadManagerVC" id="Ae7-7l-dZb" customClass="DBDownloadManagerVC" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="fpc-gL-fQr"/>
+                        <viewControllerLayoutGuide type="bottom" id="5UZ-Es-FHF"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="mh8-fB-rJ7">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="568"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="o6M-9T-pBo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="721" y="372"/>
+        </scene>
+        <!--FeedbackVC-->
+        <scene sceneID="Gac-Oj-weW">
+            <objects>
+                <viewController storyboardIdentifier="DBFeedbackVC" id="qmb-4o-jhp" customClass="DBFeedbackVC" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Not-DU-FWb"/>
+                        <viewControllerLayoutGuide type="bottom" id="WIN-iX-82E"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="mvW-Wb-5Ex">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="568"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6nb-gU-Tzj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1048" y="372"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="back" width="18" height="18"/>
+    </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
 </document>

@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void(^EditUserInfoBlock)();
+
 @interface DBMyHeadView : UIView
+
+@property (nonatomic, copy)EditUserInfoBlock editUserInfoBlock;
 
 @end

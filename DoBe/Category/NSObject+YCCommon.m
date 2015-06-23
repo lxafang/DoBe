@@ -8,6 +8,8 @@
 
 #import "NSObject+YCCommon.h"
 #import "UIAlertView+RACSignalSupport.h"
+#import <RACSignal.h>
+
 //#import "MobClick.h"
 
 @implementation NSObject (YCCommon)

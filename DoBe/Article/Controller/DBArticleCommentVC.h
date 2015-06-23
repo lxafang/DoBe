@@ -10,4 +10,6 @@
 
 @interface DBArticleCommentVC : DBBaseController
 
+@property (nonatomic, strong) NSMutableArray *commentList;
+
 @end

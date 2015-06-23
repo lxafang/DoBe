@@ -8,7 +8,12 @@
 
 #import "DBArticleReportVC.h"
 
-@interface DBArticleReportVC ()
+@interface DBArticleReportVC ()<UITableViewDelegate, UITableViewDataSource> {
+    NSArray *_datalist;
+    NSInteger _currentRow;
+}
+
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
 
@@ -16,13 +21,124 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.title = @"举报具体问题";
+    [self showBackButton];
+    [self showRightButtonWithBackgroundImage:[UIImage imageNamed:@"button_bg"] andTitle:@"发送"];
+    
+    _datalist = [NSArray arrayWithObjects:@"重复",@"过时", @"广告", @"低俗", nil];
+    _tableView.delegate = self;
+    _tableView.dataSource = self;
+    _tableView.scrollEnabled = NO;
+    [self setExtraCellLineHidden:_tableView];
+    _currentRow = -1;
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+- (void)rightBarButtonPressed:(id)sender {
+    NSLog(@"举报发送");
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return _datalist.count + 1;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    static NSString *cellID = @"DBArticleReportCellID";
+    
+    UITableViewCell *cell =[tableView dequeueReusableCellWithIdentifier:cellID];
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+    }
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    NSInteger row = indexPath.row;
+    [cell.textLabel setFont:[UIFont systemFontOfSize:15.0f]];
+    if (row == 4) {
+        [cell.textLabel setNumberOfLines:2];
+        [cell.textLabel setText:@"上述内容仅对“豆比”工作人员课件，可帮助我们更快与您沟通并解决问题。"];
+    }else {
+        if (row == _currentRow) {
+            cell.imageView.image = [UIImage imageNamed:@"article_circle_selected"];
+        }else {
+            cell.imageView.image = [UIImage imageNamed:@"article_circle"];
+        }
+        [cell.textLabel setText:[_datalist objectAtIndexSafe:row]];
+    }
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row < 4) {
+        NSLog(@"%@",[_datalist objectAtIndex:indexPath.row]);
+        _currentRow = indexPath.row;
+        [tableView reloadData];
+    }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row == 4) {
+        return 60.0f;
+    }
+    return 50.0f;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    return 0.1f;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+ 
+    return nil;
+    /*
+    UILabel *label = [[UILabel alloc] init];
+    label.text = @"上述内容仅对“豆比”工作人员课件，可帮助我们更快与您沟通并解决问题。";
+    label.numberOfLines = 2;
+    [label setFont:kNormalFont];
+    return label;*/
+}
+
+#pragma mark - 设置分隔线
+
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    //分隔线顶头显示 或设置两侧的间距
+    // Remove seperator inset
+    if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
+//        [cell setSeparatorInset:UIEdgeInsetsZero];
+        [cell setSeparatorInset:UIEdgeInsetsMake(0, 15.0f, 0, 0)];
+    }
+    
+    // Prevent the cell from inheriting the Table View's margin settings
+    if ([cell respondsToSelector:@selector(setPreservesSuperviewLayoutMargins:)]) {
+        [cell setPreservesSuperviewLayoutMargins:NO];
+    }
+    
+    // Explictly set your cell's layout margins
+    if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
+        [cell setLayoutMargins:UIEdgeInsetsZero];
+    }
+    
+}
+
+/*
+//If all fails, you may brute-force your Table View margins:
+-(void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+    
+    // Force your tableview margins (this may be a bad idea)
+    if ([self.tableView respondsToSelector:@selector(setSeparatorInset:)]) {
+        [self.tableView setSeparatorInset:UIEdgeInsetsZero];
+    }
+    
+    if ([self.tableView respondsToSelector:@selector(setLayoutMargins:)]) {
+        [self.tableView setLayoutMargins:UIEdgeInsetsZero];
+    }
+}*/
 
 /*
 #pragma mark - Navigation

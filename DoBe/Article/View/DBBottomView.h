@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DBBottomView : UIview
+typedef void(^BottomEventBlock)(NSInteger tag);
+
+@interface DBBottomView : UIView
+
+@property (nonatomic, copy)   BottomEventBlock bottomEventBlock;
+@property (nonatomic, assign) NSInteger        commentCount;  //角标 badge
+
+- (void)resetCommentCount:(NSInteger)commentCount;
 
 @end

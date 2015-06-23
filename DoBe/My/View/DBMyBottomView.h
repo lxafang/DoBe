@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void(^BottomEventTypeBlock)(NSInteger type);
+
 @interface DBMyBottomView : UIView
+
+@property (nonatomic, copy) BottomEventTypeBlock bottomEventTypeBlock;
 
 @end

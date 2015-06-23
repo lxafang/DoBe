@@ -10,6 +10,8 @@
 #import "YCProgressHUD.h"
 #import "YCSegmentButton.h"
 #import "YCSegmentRoundButton.h"
+#import <MBProgressHUD/MBProgressHUD.h>
+#import <ReactiveCocoa/ReactiveCocoa.h>
 
 //#import "MobClick.h"
 
@@ -145,6 +147,8 @@
     self.navigationItem.leftBarButtonItem = barItem;
 }
 
+
+#pragma mark - Segment
 
 -(void)addSegmentButtonInNav:(NSArray *)titleArray
 {
@@ -355,6 +359,7 @@
     UIButton *button = [self createButtonWithTitle:title];
     CGRect frame = button.frame;
     frame.size.width += 25;
+    frame.size.height = 30;
     button.frame = frame;
     image = [image stretchableImageWithLeftCapWidth:2 topCapHeight:0];
     [button setBackgroundImage:image forState:UIControlStateNormal];
@@ -455,6 +460,15 @@
     [self.view addSubview:offLineLabel];
 }
 
+#pragma mark - UITableView
+
+- (void)setExtraCellLineHidden: (UITableView *)tableView {
+    UIView *view =[ [UIView alloc]init];
+    view.backgroundColor = [UIColor clearColor];
+    [tableView setTableFooterView:view];
+    [tableView setTableHeaderView:view];
+}
+
 -(UITableViewCell *)getCellWithTableView:(UITableView *)tableView cellID:(NSString *)cellID nibName:(NSString *)nibName
 {
     UITableViewCell * customCell = [tableView dequeueReusableCellWithIdentifier:cellID];
@@ -477,7 +491,7 @@
     
 }
 
-
+#pragma mark - Image
 
 - (UIImage *)getSnapshotImage {
     
@@ -512,7 +526,9 @@
 }
 
 
+#pragma mark - ViewController
 //从最底层向上层遍历
+
 -(id)nextViewController:(id)vc
 {
     if ([vc isKindOfClass:[UINavigationController class]]) {
@@ -543,6 +559,17 @@
     }
     
     return [self nextViewController:[[[UIApplication sharedApplication] delegate] window].rootViewController];
+}
+
+//从UIStoryboard初始化UIViewController
+- (UIViewController *)instantiateViewControllerWithIdentifier:(NSString *)storyboardId
+                                           withStoryboardName:(NSString *)name {
+    if (name.length == 0 || storyboardId.length == 0) {
+        return nil;
+    }
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:name bundle:nil];
+    UIViewController *controller = [storyboard instantiateViewControllerWithIdentifier:storyboardId];
+    return controller;
 }
 
 @end

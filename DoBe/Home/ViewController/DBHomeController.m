@@ -7,8 +7,16 @@
 //
 
 #import "DBHomeController.h"
+#import "DBHeadlineView.h"
+#import "DBBottomView.h"
+#import "DBCommendView.h"
+#import "DBArticleDetailVC.h"
 
-@interface DBHomeController ()
+@interface DBHomeController () {
+    UIScrollView *_mainScroller;
+}
+
+
 
 @end
 
@@ -16,7 +24,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    [self loadSubViews];
+    [self.navigationController.navigationBar setTranslucent:NO];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -24,6 +33,25 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)loadSubViews {
+    _mainScroller = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 30 + 64.0f, kScreenW, kScreenH-200)];
+    _mainScroller.backgroundColor = [UIColor yellowColor];
+    _mainScroller.bounces = NO;
+    _mainScroller.pagingEnabled = YES;
+    _mainScroller.showsHorizontalScrollIndicator = NO;
+    _mainScroller.showsVerticalScrollIndicator = NO;
+    [self.view insertSubview:_mainScroller atIndex:0];
+    _mainScroller.contentSize = CGSizeMake(kScreenW*10, kScreenH - 200);
+    
+    DBCommendView *commendView = [[DBCommendView alloc] initWithFrame:CGRectMake(0.0f, 0.f, kScreenW, kScreenH-200)];
+    [_mainScroller addSubview:commendView];
+    commendView.didSelectRowBlock = ^(NSInteger row){
+        NSLog(@"点击第%ld行",(long)row);
+        //选择数据
+        DBArticleDetailVC *detailVC = [[DBArticleDetailVC alloc] init];
+        [self.navigationController pushViewController:detailVC animated:YES];
+    };
+}
 /*
 #pragma mark - Navigation
 

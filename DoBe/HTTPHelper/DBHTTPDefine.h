@@ -10,4 +10,7 @@
 #define DoBe_DBHTTPDefine_h
 
 
+
+#define kBaseUrl  @"https://c.pcs.baidu.com/rest/2.0/pcs/file"
+
 #endif

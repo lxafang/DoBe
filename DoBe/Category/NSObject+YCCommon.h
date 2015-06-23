@@ -7,7 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "RACSignal.h"
+
+@class RACSignal;
 
 @interface NSObject (YCCommon)
 
@@ -26,6 +27,6 @@
                  withTitle:(NSString *)title
              withMenuTitle:(NSString *)menuTitle;
 
-- (void)umengEventClick:(NSString*)eventId;
+//- (void)umengEventClick:(NSString*)eventId;
 
 @end

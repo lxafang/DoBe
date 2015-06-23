@@ -12,6 +12,7 @@
 #import "NSDictionary+SafeData.h"
 #import "NSMutableArray+Common.h"
 #import "NSArray+Common.h"
+#import "UIView+Extend.h"
 #import "UIView+Common.h"
 #import "UIView+YCCommon.h"
 #import "YCUIImage+Addition.h"

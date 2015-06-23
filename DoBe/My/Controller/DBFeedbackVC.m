@@ -17,6 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"意见反馈";
+    [self showBackButton];
 }
 
 - (void)didReceiveMemoryWarning {

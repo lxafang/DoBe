@@ -7,11 +7,36 @@
 //
 
 #import "DBCommentCell.h"
+#import "DBCommentModel.h"
+
+@interface DBCommentCell() {
+    
+    __weak IBOutlet UIImageView *headImgView;
+    
+    __weak IBOutlet UILabel *nameLab;
+    __weak IBOutlet UILabel *timeLab;
+    
+    __weak IBOutlet UILabel *praiseNumLab;
+    __weak IBOutlet UILabel *commentLab;
+    
+}
+
+@end
 
 @implementation DBCommentCell
 
 - (void)awakeFromNib {
-    // Initialization code
+    
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    nameLab.textColor = RGB(46, 154, 48);
+    timeLab.textColor = kLightTextGray;
+    praiseNumLab.textColor = kLightTextGray;
+    
+    commentLab.numberOfLines = 0;
+    CGSize size = [@"高度" sizeWithFont:kNormalFont boundSize:CGSizeMake(MAXFLOAT, MAXFLOAT)];
+    commentLab.height = size.height;
+    commentLab.textColor = LightTextBlack;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -20,4 +45,39 @@
     // Configure the view for the selected state
 }
 
+- (void)setCommentText:(NSString *)text {
+    commentLab.text = text;
+    CGFloat defaultH = commentLab.height;
+    CGSize labSize = [text sizeWithFont:kNormalFont boundSize:CGSizeMake(MAXFLOAT, MAXFLOAT)];
+    
+    if (labSize.width > commentLab.width) {
+        commentLab.height = defaultH *(labSize.width/commentLab.width + 1);
+        CGRect frame = [self frame];
+        frame.size.height = 100 + (commentLab.height- defaultH);
+        self.frame = frame;
+        [self setNeedsLayout];
+    }
+}
+
+- (void)setCommentModel:(DBCommentModel *)model {
+    
+    [headImgView setImage:model.headImage];
+    [nameLab setText:model.guestName];
+    [timeLab setText:model.time];
+    [praiseNumLab setText:model.likedCount];
+    
+    [self setCommentText:model.detail];
+}
+
+- (IBAction)praiseEventClick:(UIButton *)sender {
+    if (_cellPraiseEventBlock) {
+        _cellPraiseEventBlock();
+    }
+}
+
+- (IBAction)sendMessageEventClick:(UIButton *)sender {
+    if (_cellMessageEventBlock) {
+        _cellMessageEventBlock();
+    }
+}
 @end

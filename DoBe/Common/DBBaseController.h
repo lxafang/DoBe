@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DBBaseViewController : UIViewController
+@interface DBBaseController : UIViewController
 
 @end

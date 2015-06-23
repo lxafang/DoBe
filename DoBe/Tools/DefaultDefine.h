@@ -233,14 +233,20 @@ colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 \
 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 \
 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
+//navBar颜色
+//RGB(131, 194, 48)
+#define kNavBarColor [UIColor \
+colorWithRed:131.0f/255.0 \
+green:194.0f/255.0 \
+blue:48.0/255.0 \
+alpha:1.0]
+
 //浅灰色
 #define LightGray [UIColor \
 colorWithRed:240.0/255.0 \
 green:240.0/255.0 \
 blue:240.0/255.0 \
 alpha:1.0]
-
-
 
 //黑色文字
 #define LightTextBlack [UIColor \
@@ -303,5 +309,45 @@ alpha:1.0]
 
 // 颜色自定义
 #define YCColor(r, g, b, a) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:(a)]
+
+
+//
+#define kStatusHeight 20
+#define kScreenW [UIScreen mainScreen].bounds.size.width
+#define kScreenH [UIScreen mainScreen].bounds.size.height
+#define RGBColor(r,g,b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1.0]
+#define RGBColorAlpha(r,g,b,a) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:(a)]
+
+#define padding 20
+#define itemPerLine 4
+#define kItemW (kScreenW-padding*(itemPerLine+1))/itemPerLine
+#define kItemH 25
+
+typedef enum{
+    topViewClick = 0,
+    FromTopToTop = 1,
+    FromTopToTopLast = 2,
+    FromTopToBottomHead = 3,
+    FromBottomToTopLast = 4
+} animateType;
+
+#pragma mark - DoBe相关
+
+//系统字体颜色
+//橙色字体 RGB(241, 151, 38)
+#define kOrangeColor   RGB(241, 151, 38)
+#define kLightTextGray RGB(136, 136, 136)
+#define kBorderColor   RGB(200, 199, 204)
+#define kButtonBgColor RGB(228, 91, 34)
+
+
+//字体定义
+
+
+#define kNormalFont     [UIFont systemFontOfSize:15.0f]
+
+#define kSmallSizeFont  [UIFont systemFontOfSize:13.0f]
+#define kMiddleSizeFont [UIFont systemFontOfSize:15.0f]
+#define kLargeSizeFont  [UIFont systemFontOfSize:17.0f]
 
 #endif

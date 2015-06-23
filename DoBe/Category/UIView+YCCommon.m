@@ -8,6 +8,7 @@
 
 #import "UIView+YCCommon.h"
 #import "YCProgressHUD.h"
+#import <MBProgressHUD/MBProgressHUD.h>
 
 @implementation UIView(YCCommon)
 

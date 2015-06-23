@@ -7,6 +7,9 @@
 //
 
 #import "AppDelegate.h"
+#import "DBMainController.h"
+#import "DBHomeController.h"
+
 
 @interface AppDelegate ()
 
@@ -16,7 +19,39 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+   
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    DBMainController *main_vc = [[DBMainController alloc] init];
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:main_vc];
+    [nav.navigationBar setTranslucent:YES];
+//    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    UIImage *bgImage = [UIImage imageNamed:@"my_buttonbg"]; //328*40  194*120
+    [nav.navigationBar setBackgroundImage:[bgImage resizableImageWithCapInsets:UIEdgeInsetsMake(20.0f, 20.0f, 19.0f, 307.0f) resizingMode:UIImageResizingModeStretch]forBarMetrics:UIBarMetricsDefault];
+    [nav.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:19],NSForegroundColorAttributeName:[UIColor whiteColor]}];
+    [self.window setRootViewController:nav];
+    [self.window makeKeyAndVisible];
+    
+    
+    DBUser *userInfo = [DBUser sharedInstance];
+    userInfo.name = @"MIMO";
+    userInfo.signature = @"这家伙很懒什么也没留下";
+    userInfo.headImage = @"my_headImage";
+    
+    userInfo.cellphone = @"13954009794";
+    userInfo.email = @"13954009794@139.com";
+    userInfo.city = @"北京";
+    userInfo.address = @"海淀区北四环中关村大街66号";
+    userInfo.tags = @[@"宅男",@"技术控",@"驴友",@"程序猿"];
+    
+    userInfo.focusCount = @"10";
+    userInfo.fans = @"20";
+    userInfo.doCion = @"1000";
+    
+    /*
+    DBHomeController *homeVC = [[DBHomeController alloc] init];
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:homeVC];
+    [self.window setRootViewController:nav];*/
+
     return YES;
 }
 
